@@ -7,7 +7,7 @@
 ![Status](https://img.shields.io/badge/status-active-success?style=flat)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=flat&logo=python&logoColor=white)
 ![Framework](https://img.shields.io/badge/Framework-Streamlit-red?style=flat&logo=streamlit&logoColor=white)
-![AI](https://img.shields.io/badge/AI-Gemini%201.5%20Pro-4285F4?style=flat&logo=google&logoColor=white)
+![AI](https://img.shields.io/badge/AI-Gemini%202.5%20Pro-4285F4?style=flat&logo=google&logoColor=white)
 ![Vision](https://img.shields.io/badge/Vision-OpenCV%20%2B%20LayoutLMv3-5C3EE8?style=flat&logo=opencv&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat&logo=docker&logoColor=white)
 ![Deploy](https://img.shields.io/badge/Deploy-Render-46E3B7?style=flat&logo=render&logoColor=white)
