@@ -1,4 +1,4 @@
-# 🧠 LegalLens  
+# 🧠 SamvidAI 
 ## Intelligent Contract Analysis Engine powered by OpticalRAG
 
 <div align="center">
@@ -17,17 +17,17 @@
 
 ---
 
-LegalLens is a **next-generation legal document intelligence platform** designed to analyze long, complex legal contracts (100+ pages) with **layout awareness, low latency, and human-in-the-loop validation**.
+SamvidAI is a **next-generation legal document intelligence platform** designed to analyze long, complex legal contracts (100+ pages) with **layout awareness, low latency, and human-in-the-loop validation**.
 
-Unlike traditional OCR or text-only NLP pipelines that flatten documents and lose structure, LegalLens introduces **OpticalRAG** — a visual-first, retrieval-augmented architecture that preserves spatial context while dramatically reducing token cost, latency, and hallucinations.
+Unlike traditional OCR or text-only NLP pipelines that flatten documents and lose structure, SamvidAI introduces **OpticalRAG** — a visual-first, retrieval-augmented architecture that preserves spatial context while dramatically reducing token cost, latency, and hallucinations.
 
 > **Philosophy**  
 > *We do not replace attorneys. We empower them.*  
-> LegalLens automates extraction, risk flagging, and summarization so legal experts can focus on judgment, validation, and strategy.
+> SamvidAI automates extraction, risk flagging, and summarization so legal experts can focus on judgment, validation, and strategy.
 
 ---
 
-## 🚀 Why LegalLens?
+## 🚀 Why SamvidAI?
 
 ### ❌ The Problem
 
@@ -46,7 +46,7 @@ Traditional systems fail because:
 
 ### ✅ The Solution — OpticalRAG
 
-LegalLens uses **OpticalRAG**, a hybrid **vision + retrieval + LLM** system that:
+SamvidAI uses **OpticalRAG**, a hybrid **vision + retrieval + LLM** system that:
 
 - Treats documents as **visual data**
 - Retrieves **only relevant regions**
@@ -170,7 +170,7 @@ Generates role-specific summaries:
 
 ### 1️⃣ Clone Repository
 ```bash
-git clone https://github.com/your-username/LegalLens.git
+git clone https://github.com/your-username/SamvidAI.git
 cd LegalLens
 ```
 ### 2️⃣ Clone Repository
@@ -246,14 +246,14 @@ streamlit run ui/streamlit_app.py
 | --------------- | -------------- |
 | Full-Text GPT-4 | ~$4.20         |
 | OCR + RAG       | ~$1.90         |
-| **LegalLens**   | **~$0.65**     |
+| **SamvidAI**   | **~$0.65**     |
 
 ### ➡ ~65% cost reduction
 
 ---
 ## 📂 Project Structure
 ```
-LegalLens/
+SamvidAI/
 ├── core/
 │ ├── ingestion/ # PDF → image pipelines
 │ ├── layout/ # Layout-aware segmentation
@@ -280,7 +280,7 @@ LegalLens/
 
 ## 🧪 Research Techniques Used
 
-LegalLens incorporates modern retrieval and LLM research, including:
+SamvidAI incorporates modern retrieval and LLM research, including:
 
 - Hierarchical RAG
 - Query-aware retrieval
@@ -319,7 +319,7 @@ LegalLens incorporates modern retrieval and LLM research, including:
 
 ## 🎯 Vision
 
-LegalLens is built with a **startup-first mindset**:
+SamvidAI is built with a **startup-first mindset**:
 
 - Solves a real legal pain point
 - Optimized for limited hardware
