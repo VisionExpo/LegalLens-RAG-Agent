@@ -1,4 +1,4 @@
-# 🧠 SamvidAI 
+# 🧠 SamvidAI  
 ## Intelligent Contract Analysis Engine powered by OpticalRAG
 
 <div align="center">
@@ -7,8 +7,8 @@
 ![Status](https://img.shields.io/badge/status-active-success?style=flat)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=flat&logo=python&logoColor=white)
 ![Framework](https://img.shields.io/badge/Framework-Streamlit-red?style=flat&logo=streamlit&logoColor=white)
-![AI](https://img.shields.io/badge/AI-Gemini%202.5%20Pro-4285F4?style=flat&logo=google&logoColor=white)
-![Vision](https://img.shields.io/badge/Vision-OpenCV%20%2B%20LayoutLMv3-5C3EE8?style=flat&logo=opencv&logoColor=white)
+![AI](https://img.shields.io/badge/AI-Gemini%201.5%20Pro-4285F4?style=flat&logo=google&logoColor=white)
+![Vision](https://img.shields.io/badge/Vision-LayoutLMv3%20%2B%20OpenCV-5C3EE8?style=flat&logo=opencv&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat&logo=docker&logoColor=white)
 ![Deploy](https://img.shields.io/badge/Deploy-Render-46E3B7?style=flat&logo=render&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat)
@@ -21,9 +21,13 @@ SamvidAI is a **next-generation legal document intelligence platform** designed 
 
 Unlike traditional OCR or text-only NLP pipelines that flatten documents and lose structure, SamvidAI introduces **OpticalRAG** — a visual-first, retrieval-augmented architecture that preserves spatial context while dramatically reducing token cost, latency, and hallucinations.
 
-> **Philosophy**  
-> *We do not replace attorneys. We empower them.*  
-> SamvidAI automates extraction, risk flagging, and summarization so legal experts can focus on judgment, validation, and strategy.
+---
+
+## 🧭 Philosophy
+
+> **We do not replace attorneys. We empower them.**
+
+SamvidAI automates extraction, risk flagging, and summarization so legal experts can focus on **judgment, validation, and strategy**.
 
 ---
 
@@ -52,11 +56,11 @@ SamvidAI uses **OpticalRAG**, a hybrid **vision + retrieval + LLM** system that:
 - Retrieves **only relevant regions**
 - Converts to text **only when required**
 
-**Results**
+#### Results
 - ✅ Up to **72% token reduction**
 - ✅ Up to **4× faster inference**
 - ✅ Layout-aware reasoning
-- ✅ Scales to 100+ page contracts
+- ✅ Scales to **100+ page contracts**
 
 ---
 
@@ -80,7 +84,6 @@ Vector Retrieval (Query-Aware)
 ↓
 LLM Reasoning on Relevant Regions Only
 ```
-
 
 ### Why OpticalRAG Works
 - Preserves spatial and structural context
@@ -131,15 +134,17 @@ Generates role-specific summaries:
 ---
 
 ### 👨‍⚖️ Human-in-the-Loop Review
-- Attorneys can:
-  - Accept AI flags
-  - Reject incorrect findings
-  - Edit interpretations
-- Feedback enables:
-  - Active learning
-  - Dataset creation
-  - Continuous improvement
-- Creates a **long-term legal intelligence moat**
+Attorneys can:
+- Accept AI flags
+- Reject incorrect findings
+- Edit interpretations
+
+Feedback enables:
+- Active learning
+- Dataset creation
+- Continuous improvement
+
+Creates a **long-term legal intelligence moat**.
 
 ---
 
@@ -171,9 +176,9 @@ Generates role-specific summaries:
 ### 1️⃣ Clone Repository
 ```bash
 git clone https://github.com/your-username/SamvidAI.git
-cd LegalLens
+cd SamvidAI
 ```
-### 2️⃣ Clone Repository
+### 2️⃣ Create Virtual Environment
 ```bash
 python -m venv venv
 source venv/bin/activate   # Linux / Mac
@@ -347,4 +352,4 @@ You’ll feel right at home here.
 
 MIT License
 
-If you like this project, ⭐ star the repo and join the journey.
+> If you like this project, ⭐ star the repo and join the journey.
