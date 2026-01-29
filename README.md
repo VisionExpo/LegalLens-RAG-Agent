@@ -242,6 +242,7 @@ streamlit run ui/streamlit_app.py
 ### Contract Size: 120 Pages
 > Based on controlled experiments and synthetic contracts.
 Not production guarantees.
+
 | Metric             | OCR + Text RAG | SamvidAI (OpticalRAG) |
 | ------------------ | -------------- | --------------------- |
 | Tokens to LLM      | High           | Significantly Lower   |
