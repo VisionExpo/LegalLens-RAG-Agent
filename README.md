@@ -14,9 +14,11 @@
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat)
 
 </div>
+
+---
+
 📐 **System Design:**  
 High Level Design → [`docs/HLD.md`](docs/HLD.md)
-
 
 ---
 
@@ -53,8 +55,6 @@ Human-in-the-loop review is a first-class design principle.
 
 ---
 
----
-
 ## 📘 Architecture & Design Documentation
 
 SamvidAI follows a **documentation-first, system-design-driven approach**.  
@@ -74,7 +74,7 @@ The High Level Design document covers:
 👉 [`docs/HLD.md`](docs/HLD.md)
 
 ⬇️ **Download full design document (DOCX, 20+ pages)**  
-👉 [`docs/HLD.docx`](docs/SamvidAI_HLD.docx)
+👉 [`docs/HLD.docx`](docs/HLD.docx)
 
 > The DOCX version is the authoritative long-form design, suitable for deep review and offline reading.
 
