@@ -279,5 +279,5 @@ This HLD serves as the foundation for implementation and long-term evolution.
 
 
 ## 📌 Notes
-> For full explanations and detailed rationale, see HLD.docx
+> For full explanations and detailed rationale, see [HLD.docx](docs/SamvidAI_HLD.docx)
 
