@@ -8,7 +8,21 @@ from api.schemas.request_response import (
     SummaryResponse,
 )
 
+from api.schemas.rag import (
+    AnalyzeContractRequest,
+    AnalyzeContractResponse,
+)
+
+from samvidai.ingestion import ingest_pdf
+from samvidai.layout import segment_layout
+from samvidai.retrieval import Retriever
+from samvidai.llm.agents import LegalAgent
+
+
 app = FastAPI(title="SamvidAI", version="0.1.0")
+
+retriever = Retriever()
+agent = LegalAgent()
 
 @app.get("/health", response_model=HealthResponse)
 def health():
@@ -31,3 +45,41 @@ def risk_analysis(payload: RiskRequest):
 def summarize(payload: SummaryRequest):
     summary = agent.summarize_document(payload.context)
     return {"summary": summary}
+
+
+@app.post(
+    "/analyze-contract",
+    response_model=AnalyzeContractResponse,
+)
+def analyze_contract(payload: AnalyzeContractRequest):
+    """
+    End-to-end OpticalRAG contract analysis:
+    PDF → layout → retrieval → LLM
+    """
+
+    # 1. Ingest PDF
+    images = ingest_pdf(
+        pdf_path=payload.pdf_path,
+        work_dir="data/processed"
+    )
+
+    # 2. Layout-aware segmentation
+    blocks = segment_layout(images)
+    clause_texts = [b["text"] for b in blocks]
+
+    # 3. Index clauses
+    retriever.index(clause_texts)
+
+    # 4. Retrieve relevant clauses
+    retrieved = retriever.retrieve(payload.question)
+
+    # 5. Legal reasoning
+    answer = agent.answer_question(
+        question=payload.question,
+        context=retrieved
+    )
+
+    return {
+        "answer": answer,
+        "retrieved_clauses": retrieved,
+    }
