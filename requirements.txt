@@ -7,3 +7,6 @@ pdf2image
 pillow
 opencv-python
 numpy
+sentence-transformers
+faiss-cpu
+streamlit
