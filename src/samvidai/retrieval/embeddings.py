@@ -1,6 +1,14 @@
 from sentence_transformers import SentenceTransformer
+from typing import List
 
-_model = SentenceTransformer("all-MiniLM-L6-v2")
+class EmbeddingModel:
+    """
+    Wrapper around sentence-transformers for consistent embeddings
+    """
 
-def embed_texts(texts: list[str]):
-    return _model.encode(texts, show_progress_bar=False)
+    def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
+        self.model = SentenceTransformer(model_name)
+        self.dim = self.model.get_sentence_embedding_dimension()
+
+    def encode(self, texts: List[str]):
+        return self.model.encode(texts, show_progress_bar=False)
