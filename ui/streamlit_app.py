@@ -2,6 +2,21 @@ import streamlit as st
 import requests
 from pathlib import Path
 
+def risk_level(score: int) -> str:
+    if score >= 2:
+        return "HIGH"
+    if score == 1:
+        return "MEDIUM"
+    return "LOW"
+
+
+def risk_color(level: str) -> str:
+    return {
+        "HIGH": "🔴",
+        "MEDIUM": "🟠",
+        "LOW": "🟢",
+    }[level]
+
 API_URL = "http://127.0.0.1:8000"
 
 st.set_page_config(page_title="SamvidAI", layout="wide")
