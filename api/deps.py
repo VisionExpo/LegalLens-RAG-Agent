@@ -1,24 +1,18 @@
-"""
-Shared FastAPI dependencies for SamvidAI.
-Centralized here to avoid circular imports and duplication.
-"""
-
-from samvidai.llm.agents import LegalAgent
-from samvidai.retrieval import Retriever
+from samvidai.retrieval.embedding import EmbeddingModel
+from samvidai.llm.providers.gemini_provider import GeminiProvider
+from samvidai.llm.agents.legal_agent import LegalAgent
+from samvidai.risk_engine.classifier import RiskClassifier
+from samvidai.risk_engine.scorer import RiskScorer
 
 
-def get_legal_agent() -> LegalAgent:
-    """
-    Dependency provider for LegalAgent.
-    Stateless, safe to reuse.
-    """
-    return LegalAgent()
+def get_embedder():
+    return EmbeddingModel()
 
 
-def get_retriever() -> Retriever:
-    """
-    Dependency provider for Retriever.
-    IMPORTANT: returns a fresh instance per request
-    to avoid cross-request vector pollution.
-    """
-    return Retriever()
+def get_legal_agent():
+    provider = GeminiProvider()
+    return LegalAgent(provider)
+
+
+def get_risk_engine():
+    return RiskClassifier(), RiskScorer()
