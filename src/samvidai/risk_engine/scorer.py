@@ -1,19 +1,38 @@
-from domain.enums import RiskLevel
+RISK_MAP = {
+    "LOW": 20,
+    "MEDIUM": 50,
+    "HIGH": 80,
+}
 
 
-def score_risks(risks: list[str]) -> int:
+class RiskScorer:
     """
-    Simple numeric risk score.
+    Aggregates clause-level risks into document-level risk score.
     """
-    return len(risks)
 
+    def score(self, clause_levels: list[str]) -> dict:
+        scores = [RISK_MAP[l] for l in clause_levels if l in RISK_MAP]
 
-def risk_level(score: int) -> RiskLevel:
-    """
-    Convert numeric score to RiskLevel enum.
-    """
-    if score >= 2:
-        return RiskLevel.HIGH
-    if score == 1:
-        return RiskLevel.MEDIUM
-    return RiskLevel.LOW
+        if not scores:
+            return {
+                "risk_score": 0,
+                "risk_level": "LOW",
+                "note": "No risky clauses detected",
+            }
+
+        max_score = max(scores)
+        avg_score = sum(scores) / len(scores)
+        final_score = int(0.6 * max_score + 0.4 * avg_score)
+
+        if final_score >= 70:
+            level = "HIGH"
+        elif final_score >= 40:
+            level = "MEDIUM"
+        else:
+            level = "LOW"
+
+        return {
+            "risk_score": final_score,
+            "risk_level": level,
+            "clauses_analyzed": len(scores),
+        }

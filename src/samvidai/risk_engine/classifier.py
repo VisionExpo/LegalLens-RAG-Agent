@@ -1,38 +1,13 @@
-from typing import List
-
-
-# Keyword-based rules (can be extended or replaced later)
-RISK_PATTERNS = {
-    "termination": [
-        "without notice",
-        "immediate termination",
-        "terminate at any time",
-    ],
-    "liability": [
-        "unlimited liability",
-        "indemnify",
-        "hold harmless",
-    ],
-    "payment": [
-        "late payment penalty",
-        "interest on overdue",
-        "non-refundable",
-    ],
-}
-
-
-def classify_clause(text: str) -> List[str]:
+class RiskClassifier:
     """
-    Classify a clause into risk categories using rule-based matching.
-    Returns list of detected risk categories.
+    Classifies risk level from LLM risk analysis output.
     """
-    text_lower = text.lower()
-    detected = []
 
-    for category, patterns in RISK_PATTERNS.items():
-        for p in patterns:
-            if p in text_lower:
-                detected.append(category)
-                break
+    LEVELS = ("HIGH", "MEDIUM", "LOW")
 
-    return detected
+    def classify(self, analysis_text: str) -> str:
+        text = analysis_text.upper()
+        for level in self.LEVELS:
+            if level in text:
+                return level
+        return "LOW"
