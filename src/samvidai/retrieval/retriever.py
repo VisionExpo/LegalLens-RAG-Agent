@@ -1,5 +1,5 @@
 from typing import List, Dict
-from samvidai.retrieval.embeddings import EmbeddingModel
+from samvidai.retrieval.embedding import EmbeddingModel
 from samvidai.retrieval.vector_store import VectorStore
 
 
