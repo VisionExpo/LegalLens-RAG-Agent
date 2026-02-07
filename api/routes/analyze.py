@@ -11,21 +11,24 @@ from api.schemas.risk import (
 from api.deps import get_embedder, get_legal_agent, get_risk_engine
 
 from samvidai.retrieval.index import VectorIndex
-
+from samvidai.ingestion.config import DataSource, get_processed_path
 
 router = APIRouter()
 
 
-# -------------------------
-# Contract Q&A
-# -------------------------
 @router.post("/analyze/qa", response_model=AnalyzeContractResponse)
 def analyze_qa(
     req: AnalyzeContractRequest,
     embedder=Depends(get_embedder),
     agent=Depends(get_legal_agent),
 ):
-    index = VectorIndex.load_from_pdf(req.pdf_path)
+    source = DataSource.from_pdf_path(req.pdf_path)
+    index_dir = get_processed_path(source) / "index"
+
+    index = VectorIndex.load(
+        index_dir / "vectors.index",
+        index_dir / "metadata.json",
+    )
 
     query_embedding = embedder.encode([req.question])
     clauses = index.search(query_embedding, top_k=req.top_k)
@@ -44,9 +47,6 @@ def analyze_qa(
     )
 
 
-# -------------------------
-# Risk Analysis
-# -------------------------
 @router.post("/analyze/risk", response_model=AnalyzeRiskResponse)
 def analyze_risk(
     req: AnalyzeRiskRequest,
@@ -56,7 +56,13 @@ def analyze_risk(
 ):
     classifier, scorer = engines
 
-    index = VectorIndex.load_from_pdf(req.pdf_path)
+    source = DataSource.from_pdf_path(req.pdf_path)
+    index_dir = get_processed_path(source) / "index"
+
+    index = VectorIndex.load(
+        index_dir / "vectors.index",
+        index_dir / "metadata.json",
+    )
 
     query_embedding = embedder.encode(
         ["termination penalty liability indemnity arbitration breach"]
@@ -70,7 +76,7 @@ def analyze_risk(
             {
                 "clause_id": clause["id"],
                 "risks": [analysis],
-                "risk_score": classifier.classify(analysis),
+                "risk_score": classifier.classify_clause(analysis),
             }
         )
 
