@@ -1,22 +1,49 @@
+import sys
 from pathlib import Path
-import json
 
+from samvidai.ingestion.config import DataSource, get_processed_path
 from samvidai.layout.text_extractor import DigitalPDFTextExtractor
+from samvidai.chunking.chunker import chunk_pages
+from samvidai.retrieval.embedding import EmbeddingModel
+from samvidai.retrieval.index import VectorIndex
 
-RAW_PDF = Path("data/govt_contracts/BARC_General_Conditions_of_Contract_GCC.pdf")
-OUT_JSON = Path("data/processed/barc_gcc_pages.json")
 
+def main(pdf_path: Path):
+    if not pdf_path.exists():
+        raise FileNotFoundError(f"PDF not found: {pdf_path}")
 
-def main():
-    extractor = DigitalPDFTextExtractor(RAW_PDF)
+    # 1️⃣ Resolve data source dynamically
+    source = DataSource.from_pdf_path(pdf_path)
+    processed_dir = get_processed_path(source)
+    index_dir = processed_dir / "index"
+    index_dir.mkdir(parents=True, exist_ok=True)
+
+    print(f"[INFO] Ingesting {pdf_path}")
+    print(f"[INFO] Data source: {source.value}")
+
+    # 2️⃣ Extract text
+    extractor = DigitalPDFTextExtractor(pdf_path)
     pages = extractor.extract()
+    print(f"[INFO] Extracted {len(pages)} pages")
 
-    OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    with open(OUT_JSON, "w", encoding="utf-8") as f:
-        json.dump(pages, f, indent=2, ensure_ascii=False)
+    # 3️⃣ Chunk
+    chunks = chunk_pages(pages)
+    print(f"[INFO] Created {len(chunks)} chunks")
 
-    print(f"[SUCCESS] Saved {len(pages)} pages to {OUT_JSON}")
+    # 4️⃣ Embed + build index
+    embedder = EmbeddingModel()
+    VectorIndex.build(
+        chunks=chunks,
+        embedder=embedder,
+        output_dir=index_dir,
+    )
+
+    print(f"[SUCCESS] Built index at {index_dir}")
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) != 2:
+        print("Usage: python scripts/ingest_contract.py <pdf_path>")
+        sys.exit(1)
+
+    main(Path(sys.argv[1]))
