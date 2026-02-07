@@ -5,7 +5,7 @@ class RiskClassifier:
 
     LEVELS = ("HIGH", "MEDIUM", "LOW")
 
-    def classify(self, analysis_text: str) -> str:
+    def classify_clause(self, analysis_text: str) -> str:
         text = analysis_text.upper()
         for level in self.LEVELS:
             if level in text:
