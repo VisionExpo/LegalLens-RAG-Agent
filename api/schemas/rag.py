@@ -1,5 +1,11 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
+
+
+class AnalyzeContractRequest(BaseModel):
+    pdf_path: str
+    question: str
+    top_k: int = 5
 
 
 class ClauseCitation(BaseModel):
